@@ -1,11 +1,11 @@
 import { getSortedPostsData } from '@/lib/posts';
 import Link from 'next/link';
 
-export default function Home() {
+export default function BlogPage() {
   const allPostsData = getSortedPostsData();
+  
   return (
     <div className="space-y-8">
-      <div className="grid gap-6">
         {allPostsData.map(({ id, title, date, excerpt, category }) => (
           <article key={id}>
             <div>
@@ -15,7 +15,6 @@ export default function Home() {
             </div>
           </article>
         ))}
-      </div>
     </div>
   );
-}
+} 
