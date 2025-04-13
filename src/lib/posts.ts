@@ -77,13 +77,7 @@ export async function getPostData(id: string): Promise<PostData> {
   };
 }
 
-export function getAllPostIds() {
+export function getAllPostIds(): string[] {
   const fileNames = fs.readdirSync(postsDirectory);
-  return fileNames.map((fileName) => {
-    return {
-      params: {
-        id: fileName.replace(/\.md$/, ''),
-      },
-    };
-  });
+  return fileNames.map(fileName => fileName.replace(/\.md$/, ''));
 } 

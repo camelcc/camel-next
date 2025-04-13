@@ -3,13 +3,15 @@ import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
   const paths = getAllPostIds();
-  return paths;
+  return paths.map((path) => ({
+    id: path,
+  }));
 }
 
 export default async function Post({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = await params;
   try {
-    const { id } = await params;
-    const postData = await getPostData(id);
+    const postData = await getPostData(resolvedParams.id);
     
     return (
       <article className="prose prose-lg max-w-none">
